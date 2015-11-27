@@ -1,11 +1,24 @@
 <!DOCTYPE HTML>
 <html ng-app="notesApp">
-<head><title>Array controller</title></head>
+<head>
+	<title>Array controller</title>
+	<style>
+	.danger { 
+		background-color: red; 
+	}
+	.success {
+		background-color: green;
+	}
+	</style>	
+</head>
 <body ng-controller="MainCtrl as ctrl">
 	<h1>Array controller</h1>
 	<div ng-repeat="note in ctrl.notes">
-		<div class="label"> {{ note.label }} : </div>
-		<div class="status"> {{ note.done }} </div>
+		<div	ng-bind="label" 
+				ng-class="ctrl.getNotesClass()"></div>
+				
+		<div 	ng-show="nome"
+				ng-bind="nome"></div>
 	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
@@ -15,10 +28,17 @@
 				var self = this;
 				
 				self.notes = [
-					{id: 1, label: "label1", done: false},
+					{id: 1, label: "label1", done: false, nome: "Ikeda"},
 					{id: 2, label: "label2", done: false},
-					{id: 3, label: "label3", done: true}
+					{id: 3, label: "label3", done: true, nome: "Luiz"}
 				];
+				
+				self.getNotesClass = function(status) {
+					return {
+						success: status,
+						danger: !status
+					};
+				}
 			}]);
 	</script>
 	
