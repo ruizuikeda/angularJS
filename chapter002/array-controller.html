@@ -14,11 +14,11 @@
 <body ng-controller="MainCtrl as ctrl">
 	<h1>Array controller</h1>
 	<div ng-repeat="note in ctrl.notes">
-		<div	ng-bind="label" 
-				ng-class="ctrl.getNotesClass()"></div>
+		<div	ng-bind="note.label" 
+				ng-class="ctrl.getNotesClass(note.done)"></div>
 				
-		<div 	ng-show="nome"
-				ng-bind="nome"></div>
+		<div 	ng-show="note.nome"
+				ng-bind="note.nome"></div>
 	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
