@@ -35,9 +35,9 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="note in ctrl.notes">
+                    <tbody>
                         <!-- Usando variaveis auxiliares -->
-                        <tr>
+                        <tr  ng-repeat="note in ctrl.notes">
                             <td>{{ $first  }}</td>
                             <td>{{ $middle }}</td>
                             <td>{{ $last   }}</td>
