@@ -38,14 +38,14 @@
                     <tbody>
                         <!-- Usando variaveis auxiliares -->
                         <tr  ng-repeat="note in ctrl.notes">
-                            <td>{{ $first  }}</td>
-                            <td>{{ $middle }}</td>
-                            <td>{{ $last   }}</td>
-                            <td>{{ $index  }}</td>
-                            <td>{{ $even   }}</td>
-                            <td>{{ $odd    }}</td>
+                            <td ng-class="ctrl.getStatusClass({{$first}})">{{ $first  }}</td>
+                            <td ng-class="ctrl.getStatusClass({{$middle}})">{{ $middle }}</td>
+                            <td ng-class="ctrl.getStatusClass({{$last}})">{{ $last   }}</td>
+                            <td ng-class="ctrl.getStatusClass({{$index}})">{{ $index  }}</td>
+                            <td ng-class="ctrl.getStatusClass({{$even}})">{{ $even   }}</td>
+                            <td ng-class="ctrl.getStatusClass({{$odd}})">{{ $odd    }}</td>
                             <td>{{ note.label }}</td>
-                            <td>{{ note.done  }}</td>
+                            <td ng-class="ctrl.getStatusClass({{note.done}})">{{ note.done  }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -72,6 +72,13 @@
                         {id: 3, label: "Terceiro", done: true},
                         {id: 4, label: "Quarto",   done: false}
                     ];
+
+                    self.getStatusClass = function(status) {
+                        return {
+                            "bg-success": status,
+                            "bg-danger": !status
+                        };
+                    };
                 }]);
         </script>
     </body>
