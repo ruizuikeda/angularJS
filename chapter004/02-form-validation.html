@@ -36,7 +36,7 @@
                                        required
                                        ng-minlength="4"
                                        ng-maxlength="10" />
-                                <span  ng-class="ctrl.getInputClass(myForm.login.$valid)"></span>
+                                <span  ng-show="myForm.login.$dirty" ng-class="ctrl.getInputClass(myForm.login.$valid)"></span>
                             </div>
                         </div>
                     </div>
