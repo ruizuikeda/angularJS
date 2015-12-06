@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html ng-app="notesApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Formulário com validações</title>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    </head>
+    <body ng-controller="MainCtrl as ctrl">
+
+        <!-- Titulo da página -->
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Formulário com validações</h1>
+            </div>
+        </div>
+        <h1>&nbsp;</h1>
+
+
+        <!-- Formulário -->
+        <form ng-submit="ctrl.submit()" name="myForm">
+            <div class="row">
+                <div class="col-lg-offset-4 col-lg-4">
+
+                    <!-- Input login -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group has-feedback">
+                                <label class="label-control">Login</label>
+                                <input type="text"
+                                       ng-model="ctrl.user.login"
+                                       name="login"
+                                       class="form-control"
+                                       required
+                                       ng-minlength="4"
+                                       ng-maxlength="10" />
+                                <span  ng-class="ctrl.getInputClass(myForm.login.$valid)"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Input password -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group has-feedback">
+                                <label class="label-control">Senha</label>
+                                <input type="password"
+                                       ng-model="ctrl.user.password"
+                                       name="password"
+                                       class="form-control"
+                                       required
+                                       ng-minlength="8"
+                                       ng-maxlength="12" />
+                                <span  ng-class="ctrl.getInputClass(myForm.password.$valid)"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Submit -->
+                    <div class="row">
+                        <div class="col-lg-offset-8 col-lg-4">
+                            <input type="submit"
+                                   value="Enviar"
+                                   ng-class="ctrl.getSubmitClass(myForm.$valid)"
+                                   ng-disabled="myForm.$invalid" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+
+
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- AngularJS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+        <script type="text/javascript">
+            angular.module("notesApp", [])
+                .controller("MainCtrl", [function() {
+                    var self = this;
+
+                    self.submit = function() {
+                        console.log("Dados: ", self.user);
+                    };
+
+                    // Define a cor do botão submit
+                    self.getSubmitClass = function(status) {
+                        return {
+                            "btn btn-block btn-success": status,
+                            "btn btn-block btn-danger": !status
+                        };
+                    };
+
+                    // Define o icon dos inputs
+                    self.getInputClass = function(status) {
+                        return {
+                            "glyphicon glyphicon-ok     text-success form-control-feedback": status,
+                            "glyphicon glyphicon-remove text-danger  form-control-feedback": !status,
+                        };
+                    };
+                }]);
+        </script>
+    </body>
+</html>
